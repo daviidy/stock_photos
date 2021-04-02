@@ -1,5 +1,7 @@
+import PhotosList from '../containers/PhotosList';
+
 const App = () => (
-  <h1>Welcome to the stock photo</h1>
+  <PhotosList />
 );
 
 export default App;
