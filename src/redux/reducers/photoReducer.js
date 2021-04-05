@@ -3,7 +3,7 @@ import { GET_PHOTOS } from '../actions/actionsTypes';
 
 const initialState = [];
 
-const photoReducer = (state = initialState, action) => {
+const photos = (state = initialState, action) => {
   switch (action.type) {
     case GET_PHOTOS:
       getPhotos();
@@ -14,4 +14,4 @@ const photoReducer = (state = initialState, action) => {
   }
 };
 
-export default photoReducer;
+export default photos;
