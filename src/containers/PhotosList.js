@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Photo from '../components/Photo';
@@ -6,10 +5,6 @@ import Photo from '../components/Photo';
 const PhotosList = ({
   photos,
 }) => {
-  useEffect(() => {
-    console.log('yes');
-  }, []);
-
   console.log(photos);
 
   const renderPhotos = (arr) => (arr.map((val) => (

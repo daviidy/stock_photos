@@ -1,14 +1,9 @@
-import { createStore } from 'redux';
-import getPhotos from '../modules/getPhotos';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import combineReducers from './reducers/index';
 
-let initialState;
+const middlewares = [thunk];
 
-getPhotos().then((result) => {
-  initialState = {
-    photos: result,
-  };
-  console.log(initialState);
-});
+const initialState = [];
 
-export default createStore(combineReducers, initialState);
+export default createStore(combineReducers, initialState, applyMiddleware(...middlewares));
