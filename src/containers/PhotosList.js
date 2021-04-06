@@ -1,34 +1,74 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Photo from '../components/Photo';
+import fetchPhotosAction from '../modules/fetchPhotos';
+import { getPhotos, getPhotosError, getPhotosPending } from '../redux/reducers/photoReducer';
 
 const PhotosList = ({
   photos,
+  error,
+  pending,
+  fetchPhotos,
 }) => {
-  console.log(photos);
-
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
   const renderPhotos = (arr) => (arr.map((val) => (
     <Photo key={val.id} photo={val} />
   )));
 
+  const shouldShowSpinner = () => {
+    if (pending === false) return false;
+    return true;
+  };
+
+  console.log(`photos: ${pending}`);
+
+  if (shouldShowSpinner()) {
+    return <p>spinner</p>;
+  }
+
   return (
     <div>
       {
-              renderPhotos(photos)
+        error
+          ? <p>{error}</p>
+          : renderPhotos(photos)
         }
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  const { photos } = state;
-  return { photos };
+  console.log(state.photos);
+  return {
+    error: getPhotosError(state),
+    photos: getPhotos(state),
+    pending: getPhotosPending(state),
+  };
 };
 
-export default connect(mapStateToProps, null)(PhotosList);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchPhotos: fetchPhotosAction,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PhotosList);
 
 PhotosList.propTypes = {
+  fetchPhotos: PropTypes.func.isRequired,
+  pending: PropTypes.bool,
+  error: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.shape({
     alt_description: PropTypes.string.isRequired,
-  })).isRequired,
+  })),
+};
+
+PhotosList.defaultProps = {
+  pending: true,
+  error: null,
+  photos: [],
 };

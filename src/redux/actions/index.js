@@ -2,16 +2,16 @@ import {
   CHANGE_FILTER, FETCH_PHOTOS_PENDING, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_ERROR,
 } from './actionsTypes';
 
-export const fetchProductsPending = () => ({
+export const fetchPhotosPending = () => ({
   type: FETCH_PHOTOS_PENDING,
 });
 
-export const fetchProductsSuccess = (products) => ({
+export const fetchPhotosSuccess = (photos) => ({
   type: FETCH_PHOTOS_SUCCESS,
-  products,
+  photos,
 });
 
-export const fetchProductsError = (error) => ({
+export const fetchPhotosError = (error) => ({
   type: FETCH_PHOTOS_ERROR,
   error,
 });
