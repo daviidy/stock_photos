@@ -2,7 +2,8 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import combineReducers from './reducers/index';
-import { initialState } from './reducers/photoReducer';
+import { photosState } from './reducers/photoReducer';
+import { singlePhotoState } from './reducers/singlePhotoReducer';
 
 const { NODE_ENV } = process.env;
 
@@ -14,6 +15,9 @@ const enableDevTools = NODE_ENV === 'development'
 
 export default createStore(
   combineReducers,
-  { photos: initialState },
+  {
+    photos: photosState,
+    singlePhoto: singlePhotoState,
+  },
   enableDevTools,
 );

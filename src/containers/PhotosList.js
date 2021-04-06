@@ -26,7 +26,8 @@ const PhotosList = ({
     return true;
   };
 
-  console.log(`photos: ${pending}`);
+  console.log(`pending: ${pending}`);
+  console.log(`photos: ${photos}`);
 
   if (shouldShowSpinner()) {
     return <p>spinner</p>;
@@ -63,7 +64,7 @@ PhotosList.propTypes = {
   pending: PropTypes.bool,
   error: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.shape({
-    alt_description: PropTypes.string.isRequired,
+    alt_description: PropTypes.string,
   })),
 };
 

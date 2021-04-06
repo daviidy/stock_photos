@@ -1,12 +1,12 @@
 import { FETCH_PHOTOS_PENDING, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_ERROR } from '../actions/actionsTypes';
 
-export const initialState = {
+export const photosState = {
   pending: false,
   photos: [],
   error: null,
 };
 
-const photos = (state = initialState, action) => {
+const photos = (state = photosState, action) => {
   switch (action.type) {
     case FETCH_PHOTOS_PENDING:
       return {

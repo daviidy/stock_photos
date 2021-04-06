@@ -1,5 +1,11 @@
 import {
-  CHANGE_FILTER, FETCH_PHOTOS_PENDING, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_ERROR,
+  CHANGE_FILTER,
+  FETCH_PHOTOS_PENDING,
+  FETCH_PHOTOS_SUCCESS,
+  FETCH_PHOTOS_ERROR,
+  SINGLE_PHOTO_PENDING,
+  SINGLE_PHOTO_SUCCESS,
+  SINGLE_PHOTO_ERROR,
 } from './actionsTypes';
 
 export const fetchPhotosPending = () => ({
@@ -19,4 +25,18 @@ export const fetchPhotosError = (error) => ({
 export const changeFilter = (filter) => ({
   type: CHANGE_FILTER,
   filter,
+});
+
+export const singlePhotoPending = () => ({
+  type: SINGLE_PHOTO_PENDING,
+});
+
+export const singlePhotoSuccess = (photo) => ({
+  type: SINGLE_PHOTO_SUCCESS,
+  photo,
+});
+
+export const singlePhotoError = (error) => ({
+  type: SINGLE_PHOTO_ERROR,
+  error,
 });
