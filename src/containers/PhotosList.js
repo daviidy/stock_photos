@@ -18,7 +18,9 @@ const PhotosList = ({
     fetchPhotos();
   }, []);
   const renderPhotos = (arr) => (arr.map((val) => (
-    <Photo key={val.id} photo={val} />
+    <div key={val.id} className="col-4 mb-3">
+      <Photo photo={val} />
+    </div>
   )));
 
   const shouldShowSpinner = () => {
@@ -30,17 +32,21 @@ const PhotosList = ({
   console.log(`photos: ${photos}`);
 
   if (shouldShowSpinner()) {
-    return <p>spinner</p>;
+    return (
+      <div className="text-center col-12">
+        <div className="spinner-border" />
+      </div>
+    );
   }
 
   return (
-    <div>
+    <>
       {
         error
           ? <p>{error}</p>
           : renderPhotos(photos)
         }
-    </div>
+    </>
   );
 };
 

@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import fecthSinglePhotoAction from '../modules/fetchSinglePhoto';
 import { getPhoto, getPhotoError, getPhotoPending } from '../redux/reducers/singlePhotoReducer';
+import Photo from '../components/Photo';
+import PhotoDetails from '../components/PhotoDetails';
 
 const SinglePhoto = (props) => {
   const {
@@ -33,13 +35,18 @@ const SinglePhoto = (props) => {
   }
 
   return (
-    <div>
-      {
-        error
-          ? <p>{error}</p>
-          : photo.id
-        }
-    </div>
+    <section className="container mt-5">
+      <div className="row">
+        <div className="col-8">
+          {
+            error || <Photo photo={photo} />
+          }
+        </div>
+        <div className="col-4">
+          <PhotoDetails photo={photo} />
+        </div>
+      </div>
+    </section>
   );
 };
 

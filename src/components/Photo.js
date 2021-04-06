@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 
 const Photo = ({ photo }) => (
   <a href={`/photos/${photo.id}`}>
-    {
-    photo.alt_description
-      ? photo.alt_description
-      : 'null'
-    }
+    <img
+      className="img-fluid rounded"
+      src={photo.urls.regular}
+      alt={photo.alt_description}
+    />
   </a>
 );
 
@@ -16,5 +16,8 @@ Photo.propTypes = {
   photo: PropTypes.shape({
     id: PropTypes.string,
     alt_description: PropTypes.string,
+    urls: PropTypes.shape({
+      regular: PropTypes.string,
+    }),
   }).isRequired,
 };
