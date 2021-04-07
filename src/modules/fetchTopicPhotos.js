@@ -1,11 +1,11 @@
-import { fetchTopicPhotosSuccess, fetchTopicPhotosPending, fetchTopicPhotosError } from '../redux/actions';
+import { fetchPhotosSuccess, fetchPhotosPending, fetchPhotosError } from '../redux/actions';
 
 /* eslint-disable no-console */
-const fetchTopicPhotos = (topicId) => {
+const fetchTopicPhotos = (filter, topicId) => {
   const id = 'MCND5iYNL5s5JVeGbbFAZ_HrNERMYgih1itJHqsUGPo';
   console.log('fetchphotos');
   return (dispatch) => {
-    dispatch(fetchTopicPhotosPending());
+    dispatch(fetchPhotosPending());
     fetch(`https://api.unsplash.com/topics/${topicId}/photos?client_id=${id}&page=1&per_page=12`,
       {
         mode: 'cors',
@@ -20,12 +20,12 @@ const fetchTopicPhotos = (topicId) => {
         }
         console.log('success');
         console.log(res);
-        dispatch(fetchTopicPhotosSuccess(res));
+        dispatch(fetchPhotosSuccess(res, filter));
         return res;
       })
       .catch((error) => {
         console.log('error');
-        dispatch(fetchTopicPhotosError(error));
+        dispatch(fetchPhotosError(error));
       });
   };
 };

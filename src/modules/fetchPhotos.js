@@ -1,7 +1,7 @@
 import { fetchPhotosError, fetchPhotosPending, fetchPhotosSuccess } from '../redux/actions';
 
 /* eslint-disable no-console */
-const fetchPhotos = () => {
+const fetchPhotos = (filter) => {
   const id = 'MCND5iYNL5s5JVeGbbFAZ_HrNERMYgih1itJHqsUGPo';
   console.log('fetchphotos');
   return (dispatch) => {
@@ -20,7 +20,7 @@ const fetchPhotos = () => {
         }
         console.log('success');
         console.log(res);
-        dispatch(fetchPhotosSuccess(res));
+        dispatch(fetchPhotosSuccess(res, filter));
         return res;
       })
       .catch((error) => {

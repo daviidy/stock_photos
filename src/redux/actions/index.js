@@ -1,5 +1,4 @@
 import {
-  CHANGE_FILTER,
   FETCH_PHOTOS_PENDING,
   FETCH_PHOTOS_SUCCESS,
   FETCH_PHOTOS_ERROR,
@@ -15,9 +14,10 @@ export const fetchPhotosPending = () => ({
   type: FETCH_PHOTOS_PENDING,
 });
 
-export const fetchPhotosSuccess = (photos) => ({
+export const fetchPhotosSuccess = (photos, filter) => ({
   type: FETCH_PHOTOS_SUCCESS,
   photos,
+  filter,
 });
 
 export const fetchPhotosError = (error) => ({
@@ -29,33 +29,15 @@ export const fetchTopicsPending = () => ({
   type: FETCH_TOPICS_PENDING,
 });
 
-export const fetchTopicsSuccess = (topics) => ({
+export const fetchTopicsSuccess = (topics, filter) => ({
   type: FETCH_TOPICS_SUCCESS,
   topics,
+  filter,
 });
 
 export const fetchTopicsError = (error) => ({
   type: FETCH_TOPICS_ERROR,
   error,
-});
-
-export const fetchTopicPhotosPending = () => ({
-  type: FETCH_PHOTOS_PENDING,
-});
-
-export const fetchTopicPhotosSuccess = (photos) => ({
-  type: FETCH_PHOTOS_SUCCESS,
-  photos,
-});
-
-export const fetchTopicPhotosError = (error) => ({
-  type: FETCH_PHOTOS_ERROR,
-  error,
-});
-
-export const changeFilter = (filter) => ({
-  type: CHANGE_FILTER,
-  filter,
 });
 
 export const singlePhotoPending = () => ({

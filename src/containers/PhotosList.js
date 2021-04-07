@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import Photo from '../components/Photo';
 import fetchPhotosAction from '../modules/fetchPhotos';
 import fetchTopicsAction from '../modules/fetchTopics';
-import { getPhotos, getPhotosError, getPhotosPending } from '../redux/reducers/photoReducer';
+import fetchTopicPhotosAction from '../modules/fetchTopicPhotos';
+import {
+  getPhotos, getPhotosError, getPhotosPending, getFilter,
+} from '../redux/reducers/photoReducer';
 import TopicFilter from './TopicFilter';
 import { getTopics, getTopicsError, getTopicsPending } from '../redux/reducers/topicReducer';
 
@@ -15,16 +18,23 @@ const PhotosList = ({
   photos,
   error,
   pending,
+  filter,
   fetchPhotos,
   fetchTopics,
   errorTopic,
   pendingTopic,
   topics,
+  fetchTopicPhotos,
 }) => {
   useEffect(() => {
-    fetchPhotos();
+    fetchPhotos('All');
     fetchTopics();
   }, []);
+
+  const handleFilterChange = (filter, topicId) => {
+    fetchTopicPhotos(filter, topicId);
+  };
+
   const renderPhotos = (arr) => (arr.map((val) => (
     <div key={val.id} className="col-4 mb-3">
       <a href={`/photos/${val.id}`}>
@@ -51,7 +61,7 @@ const PhotosList = ({
 
   return (
     <>
-      <TopicFilter topics={topics} />
+      <TopicFilter filter={filter} topics={topics} handleFilterChange={handleFilterChange} />
       {
         error
           ? <p>{error}</p>
@@ -65,6 +75,7 @@ const mapStateToProps = (state) => {
   console.log(state.photos);
   return {
     error: getPhotosError(state),
+    filter: getFilter(state),
     photos: getPhotos(state),
     pending: getPhotosPending(state),
     errorTopic: getTopicsError(state),
@@ -76,6 +87,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchPhotos: fetchPhotosAction,
   fetchTopics: fetchTopicsAction,
+  fetchTopicPhotos: fetchTopicPhotosAction,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhotosList);
@@ -83,8 +95,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(PhotosList);
 PhotosList.propTypes = {
   fetchPhotos: PropTypes.func.isRequired,
   fetchTopics: PropTypes.func.isRequired,
+  fetchTopicPhotos: PropTypes.func.isRequired,
   pending: PropTypes.bool,
   error: PropTypes.string,
+  filter: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.shape({
     alt_description: PropTypes.string,
   })),
@@ -98,6 +112,7 @@ PhotosList.propTypes = {
 PhotosList.defaultProps = {
   pending: true,
   error: null,
+  filter: '',
   photos: [],
   pendingTopic: true,
   errorTopic: null,

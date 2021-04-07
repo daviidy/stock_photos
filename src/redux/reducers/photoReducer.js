@@ -4,6 +4,7 @@ export const photosState = {
   pending: false,
   photos: [],
   error: null,
+  filter: 'All',
 };
 
 const photos = (state = photosState, action) => {
@@ -19,6 +20,7 @@ const photos = (state = photosState, action) => {
         ...state,
         pending: false,
         photos: action.photos,
+        filter: action.filter,
       };
 
     case FETCH_PHOTOS_ERROR:
@@ -36,5 +38,5 @@ const photos = (state = photosState, action) => {
 export const getPhotos = (state) => state.photos.photos;
 export const getPhotosPending = (state) => state.photos.pending;
 export const getPhotosError = (state) => state.photos.error;
-
+export const getFilter = (state) => state.photos.filter;
 export default photos;
