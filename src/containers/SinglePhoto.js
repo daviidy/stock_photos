@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import fecthSinglePhotoAction from '../modules/fetchSinglePhoto';
-import { getPhoto, getPhotoError, getPhotoPending } from '../redux/reducers/singlePhotoReducer';
 import Photo from '../components/Photo';
 import PhotoDetails from '../components/PhotoDetails';
+import fecthSinglePhotoAction from '../modules/fetchSinglePhoto';
+import { getPhoto, getPhotoError, getPhotoPending } from '../redux/reducers/singlePhotoReducer';
 
 const SinglePhoto = (props) => {
   const {
@@ -22,29 +22,46 @@ const SinglePhoto = (props) => {
     fetchSinglePhoto(params.id);
   }, []);
 
+  const renderSinglePhoto = (val) => (
+    <>
+      <div className="col-8">
+        <Photo photo={val} />
+      </div>
+      <div className="col-4">
+        <PhotoDetails photo={val} />
+      </div>
+    </>
+  );
+
   const shouldShowSpinner = () => {
     if (pending === false) return false;
     return true;
   };
 
   console.log(`pending: ${pending}`);
-  console.log(`photos: ${photo}`);
+  console.log(`photo: ${photo}`);
 
   if (shouldShowSpinner()) {
-    return <p>spinner</p>;
+    return (
+      <div className="text-center col-12">
+        <div className="spinner-border" />
+      </div>
+    );
   }
 
   return (
     <section className="container mt-5">
-      <div className="row">
-        <div className="col-8">
-          {
-            error || <Photo photo={photo} />
-          }
-        </div>
-        <div className="col-4">
-          <PhotoDetails photo={photo} />
-        </div>
+      <div className="row mb-5">
+        {
+          Object.keys(photo).length === 0
+            ? (
+              <p>
+                {error}
+                <strong>No photo!</strong>
+              </p>
+            )
+            : renderSinglePhoto(photo)
+        }
       </div>
     </section>
   );

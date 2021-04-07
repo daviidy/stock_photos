@@ -5,13 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min';
 import 'bootstrap/dist/js/bootstrap.min';
 import { Provider } from 'react-redux';
-import Routes from './Routes';
 import store from './redux/store';
+import Navbar from './components/Navbar';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Routes />
+      <Navbar />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

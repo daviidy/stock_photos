@@ -19,7 +19,9 @@ const PhotosList = ({
   }, []);
   const renderPhotos = (arr) => (arr.map((val) => (
     <div key={val.id} className="col-4 mb-3">
-      <Photo photo={val} />
+      <a href={`/photos/${val.id}`}>
+        <Photo photo={val} />
+      </a>
     </div>
   )));
 
