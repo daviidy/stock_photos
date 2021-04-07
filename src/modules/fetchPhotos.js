@@ -6,7 +6,7 @@ const fetchPhotos = () => {
   console.log('fetchphotos');
   return (dispatch) => {
     dispatch(fetchPhotosPending());
-    fetch(`https://api.unsplash.com/photos/?client_id=${id}&page=1&per_page=12`,
+    fetch(`https://api.unsplash.com/photos/?client_id=${id}&page=1&per_page=24`,
       {
         mode: 'cors',
         headers: {
