@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -48,9 +47,6 @@ const PhotosList = ({
     return true;
   };
 
-  console.log(`pending: ${pending}`);
-  console.log(`photos: ${photos}`);
-
   if (shouldShowSpinner()) {
     return (
       <div className="text-center col-12">
@@ -71,18 +67,15 @@ const PhotosList = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  console.log(state.photos);
-  return {
-    error: getPhotosError(state),
-    filter: getFilter(state),
-    photos: getPhotos(state),
-    pending: getPhotosPending(state),
-    errorTopic: getTopicsError(state),
-    topics: getTopics(state),
-    pendingTopic: getTopicsPending(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  error: getPhotosError(state),
+  filter: getFilter(state),
+  photos: getPhotos(state),
+  pending: getPhotosPending(state),
+  errorTopic: getTopicsError(state),
+  topics: getTopics(state),
+  pendingTopic: getTopicsPending(state),
+});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchPhotos: fetchPhotosAction,

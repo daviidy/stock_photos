@@ -15,11 +15,9 @@ const TopicFilter = ({ filter, topics, handleFilterChange }) => {
         <select className="form-control" id="topic" onChange={handleChange}>
           <option value="All">All</option>
           {topics.map((val) => (
-            <>
-              <option key={val.id} value={val.id}>
-                {val.title}
-              </option>
-            </>
+            <option key={val.id} value={val.id}>
+              {val.title}
+            </option>
           ))}
 
         </select>
