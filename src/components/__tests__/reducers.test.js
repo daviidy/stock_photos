@@ -37,6 +37,5 @@ describe('photos reducer', () => {
         filter: 'All',
       },
     );
-
   });
 });

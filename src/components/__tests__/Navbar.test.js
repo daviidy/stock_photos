@@ -5,7 +5,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { shallow, configure } from 'enzyme';
 import Navbar from '../Navbar';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

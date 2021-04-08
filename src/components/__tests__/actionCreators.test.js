@@ -111,23 +111,6 @@ describe('async actions', () => {
       }],
     ));
 
-    const expectedActions = [
-      { type: types.FETCH_PHOTOS_PENDING },
-      {
-        type: types.FETCH_PHOTOS_SUCCESS,
-        photos: [
-          {
-            id: 'any',
-            description: 'any',
-          },
-          {
-            id: 'test',
-            description: 'test',
-          },
-        ],
-        filter: 'All',
-      },
-    ];
     const store = mockStore({
       photos: {
         photos: [],

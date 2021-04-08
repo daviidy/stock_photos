@@ -1,9 +1,9 @@
-import { fetchPhotosError, fetchPhotosPending, fetchPhotosSuccess } from '../redux/actions'
+import { fetchPhotosError, fetchPhotosPending, fetchPhotosSuccess } from '../redux/actions';
 
 const fetchPhotos = (filter) => {
-  const id = 'MCND5iYNL5s5JVeGbbFAZ_HrNERMYgih1itJHqsUGPo'
+  const id = 'MCND5iYNL5s5JVeGbbFAZ_HrNERMYgih1itJHqsUGPo';
   return async (dispatch) => {
-    dispatch(fetchPhotosPending())
+    dispatch(fetchPhotosPending());
 
     // fetch(`https://api.unsplash.com/photos/?client_id=${id}&page=1&per_page=24`,
     //   {
@@ -29,15 +29,17 @@ const fetchPhotos = (filter) => {
         {
           mode: 'cors',
           headers: {
-            Authorization: `Client-ID ${id}`
-          }
-        })
-      const second = await first;
+            Authorization: `Client-ID ${id}`,
+          },
+        });
+      const second = await first.json();
       dispatch(fetchPhotosSuccess(second, filter));
+      return second;
     } catch (error) {
       dispatch(fetchPhotosError(error));
+      return error;
     }
-  }
-}
+  };
+};
 
-export default fetchPhotos
+export default fetchPhotos;
