@@ -1,4 +1,4 @@
-# Catalogue of photos
+# Catalog of photos
 The project I built is a clone of Unsplash. It's based on a catalog of photos. It is not Unsplash itself because I didn't build any payments or user authentication. I just wanted to build a catalog, that is, a browsable list of photos that you can filter and access to the details of one photo.
 
 ## Project screenshot
