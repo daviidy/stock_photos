@@ -19,7 +19,7 @@ Our project can be found at https://github.com/daviidy/stock_photos
 
 ## Live Demo
 
-You can find the demo [here](https://compassionate-noether-1b33d4.netlify.app/)
+You can find the demo [here](https://photos-stock-mcv.netlify.app/)
 
 ## To run the project in local
 
